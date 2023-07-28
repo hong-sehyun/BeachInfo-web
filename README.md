@@ -1,7 +1,7 @@
 # Getting Started with Create React App
 
-백엔드 코드는 [여기](https://github.com/hong-sehyun/SpringBoot/tree/main/beachinfo) 에서 확인하실 수 있습니다.
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+백엔드 코드는 [여기](https://github.com/hong-sehyun/SpringBoot/tree/main/beachinfo)에서 확인하실 수 있습니다.
+
 
 ## Available Scripts
 
