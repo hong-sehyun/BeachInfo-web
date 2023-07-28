@@ -1,16 +1,16 @@
 import video from '../../Assets/homevideo.mp4'
+import {FaSearchLocation} from 'react-icons/fa'
+
 import './home.css'
 import { useState, useEffect, useRef, React } from 'react'
 import Maindiv from './Maindiv';
 import binfo from "../../Data/beachesinfo.json";
-//import SosMap from './SosMap';
-import SosLoc from '../../Data/SOSLocation.json'
+
 const Home = () => {
 
   const data = binfo;
 
   // const [sosMapData, setSosMapData] = useState([]);
-  const sosMapData = SosLoc;
 
   const [dtlist, setDtlist] = useState([]);
   const [cities1, setCities1] = useState([]);
@@ -31,7 +31,7 @@ const Home = () => {
     setCities2(newCities2);
   }, [selCity1, data]);
 
-  
+
 
 
   const show = (e) => {
@@ -101,22 +101,17 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="btdiv grid">
-              <button onClick={(e) => show(e)}>검색</button>
-              <button>취소</button>
+            {/* <div className="btdiv grid">
+              <button onClick={(e) => show(e)}>검색</button>            
+            </div> */}
+            <div className="searchOption flex"  onClick={(e) => show(e)}>
+
+              <span id='searchtxt'>Search  </span>
+              <FaSearchLocation className='icon'/>
             </div>
           </div>
         </article>
-        {/* <div>
-          <article id='sosmap'>
-            <header><h2>인명구조함 위치</h2></header>
-            <div id="map" style={{ width: '100%', height: '350px' }} />
-          </article>
-
-        </div> */}
-
         {dtlist && <Maindiv content={dtlist} />}
-        {/* {dtlist && <SosMap content={dtlist} />} */}
 
       </div>
     </main>

@@ -6,12 +6,45 @@ import './footer.css'
 const Footer = () => {
 
   const [boards, setBoards] = useState([]);
+  const [beaches, setBeaches] = useState([]);
+  const [selectedBeach, setSelectedBeach] = useState('');
+
   useEffect(() => {
     fetch('http://localhost:8080/Boards')
-      .then((response) => response.json())
+      .then((resp) => resp.json())
       .then((data) => setBoards(data))
-      .catch((error) => console.error( error));
+      .catch((error) => console.error(error));
+   
   }, []);
+
+
+  useEffect(() => {
+    fetch('http://localhost:8080/beaches')
+      .then((resp) => resp.json())
+      .then((data) => {
+        setBeaches(data.map((beachData) => beachData.beach)); // Extract only the 'beach' property
+      })
+      .catch((error) => console.error(error));
+  }, []);
+
+
+
+  const showBeaches = () => {
+    return (
+      <div>
+      <select>
+      <option value="" defaultValue>해수욕장</option>
+        {beaches.map((beachName) => (
+          <option key={beachName.id} value={beachName.beach}>
+            {beachName}
+          </option>
+        ))}
+      </select>
+    </div>
+    );
+  };
+  
+
 
   const showBoards = () => {
     return (
@@ -36,8 +69,8 @@ const Footer = () => {
               <td>{board.createDate}</td>
               <td>
                 <div className='grid'>
-                <a href='#'>수정</a>
-                <a href='#'>삭제</a>
+                  <a href='#'>수정</a>
+                  <a href='#'>삭제</a>
                 </div>
               </td>
             </tr>
@@ -51,16 +84,18 @@ const Footer = () => {
 
     <article>
       <form>
-      {showBoards()}
+        {showBoards()}
       </form>
       <div id='more'>
         <a href='#'>more ▷ </a>
       </div>
       <div className='txt grid'>
-        <label for="text"></label>
+        <label htmlFor="text"></label>
         <input type='text' id='id'></input>
+        {showBeaches()}
+        <label htmlFor="content"></label>
         <input type='text' id='content'></input>
-        <button type="submit">Submit</button>
+        <button id='boardbt' type="submit">Submit</button>
       </div>
     </article>
 
