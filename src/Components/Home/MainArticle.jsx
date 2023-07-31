@@ -86,9 +86,9 @@ const MainArticle = ({ item }) => {
           <a onClick={handleModalOpen}><BsMap /> 지도 보기 </a>
 
           {isModalOpen && (
-            <div id="modalContainer">
+            <dialog id="modalContainer">
               
-              <div id="modalContent">
+              <article id="modalContent">
                 <div id='spbt'>
                 <AiOutlineClose onClick={handleModalClose} id='closebt'/>
 
@@ -97,8 +97,8 @@ const MainArticle = ({ item }) => {
                 <p>{item.address}</p>
                 <div id="kakaoMap" className="kakaoMap" style={{ width: '500px', height: '400px' }}></div>
                 
-              </div>
-            </div>
+              </article>
+            </dialog>
           )}
         </div>
       </div>

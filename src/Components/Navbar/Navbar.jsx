@@ -3,6 +3,7 @@ import {LiaUmbrellaBeachSolid} from 'react-icons/lia'
 import './navbar.css'
 
 const Navbar = () => {
+
   return (
     <nav>
       <ul>
