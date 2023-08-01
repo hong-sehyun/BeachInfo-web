@@ -5,9 +5,16 @@ import {AiOutlineClose} from 'react-icons/ai'
 import {HiOutlineLocationMarker} from 'react-icons/hi'
 import {BsMap} from 'react-icons/bs'
 import './home.css'
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const MainArticle = ({ item }) => {
+
+  useEffect(() => {
+    AOS.init({duration: 800})
+  }, [])
+
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const {kakao} = window
   const handleModalOpen = () => {
@@ -70,20 +77,25 @@ const MainArticle = ({ item }) => {
   }, [isModalOpen, item.address, item.beach]);
 
   return (
-    <article>
+    <main>
+    <article data-aos="fade-up">
       <header>
         <hgroup>
           <h2>{item.beach} 해수욕장</h2>
           <h3><HiOutlineLocationMarker className='locicon'/> {item.address}</h3>
         </hgroup>
       </header>
+      <div className='cardBody flex'>
+        <span>
+          <p>개장일 : {item.open}</p>
+          <p>폐장일 : {item.close}</p>
+        </span>
+        <a onClick={handleModalOpen}><BsMap /> 지도 보기 </a>
+      </div>
+        
+      </article>
       <div>
-        <ul>
-          <li>개장일 {item.open}</li>
-          <li>폐장일 {item.close}</li>
-        </ul>
-        <div>
-          <a onClick={handleModalOpen}><BsMap /> 지도 보기 </a>
+         
 
           {isModalOpen && (
             <dialog id="modalContainer">
@@ -101,9 +113,7 @@ const MainArticle = ({ item }) => {
             </dialog>
           )}
         </div>
-      </div>
-      {/* {showModal && <Modal onClose={handleModalClose} item={item} />} */}
-    </article>
+        </main>
   );
 };
 
