@@ -5,13 +5,21 @@ import './home.css'
 import { useState, useEffect, useRef, React } from 'react'
 import Maindiv from './Maindiv';
 import binfo from "../../Data/beachesinfo.json";
+import MainArticle from "./MainArticle";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+
 
 const Home = () => {
 
   const data = binfo;
 
-  // const [sosMapData, setSosMapData] = useState([]);
 
+  useEffect(() => {
+    AOS.init({duration: 800})
+  }, [])
+  
   const [dtlist, setDtlist] = useState([]);
   const [cities1, setCities1] = useState([]);
   const [selCity1, setSelCity1] = useState('');
@@ -80,7 +88,7 @@ const Home = () => {
           </h1>
         </div>
 
-        <article className="grid">
+        <article data-aos="fade-up" className="grid">
           <div className='grid'>
             <div className="destinationInput">
               <label htmlFor="city">Search your destination:</label>
@@ -111,8 +119,8 @@ const Home = () => {
             </div>
           </div>
         </article>
+        
         {dtlist && <Maindiv content={dtlist} />}
-
       </div>
     </main>
   )

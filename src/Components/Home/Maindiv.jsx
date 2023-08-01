@@ -1,6 +1,8 @@
 import MainArticle from "./MainArticle";
 
 import React from 'react'
+import './home.css'
+
 
 const Maindiv = ({ content }) => {
 
@@ -20,6 +22,14 @@ const Maindiv = ({ content }) => {
         );
     }
 
+    // for (let i = 0; i < content.length; i = i +1) {
+    //     console.log(i);
+    //     tags.push(
+    //         <div className="cardDiv" key={'div' + i}>
+    //             <MainArticle item = {content[i]} />            
+    //         </div>
+    //     );
+    // }
     return (
         <>
             {tags}
