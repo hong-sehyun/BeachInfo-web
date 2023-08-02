@@ -2,13 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { LiaUmbrellaBeachSolid } from 'react-icons/lia'
 import AOS from "aos";
 import "aos/dist/aos.css";
-import './footer.css'
+import './board.css'
 
 
 const Footer = () => {
+
+  
   useEffect(() => {
     AOS.init({duration: 800})
   }, [])
+
+
   const [boards, setBoards] = useState([]);
   const [beaches, setBeaches] = useState([]);
   const [selectedBeach, setSelectedBeach] = useState('');

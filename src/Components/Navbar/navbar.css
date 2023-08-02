@@ -6,3 +6,8 @@
 .icon {
     font-size: 35px; 
 }
+
+#UserIcon {
+    font-size: 35px;
+    color: rgba(65, 84, 98); 
+}
