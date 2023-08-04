@@ -18,14 +18,11 @@ form {
 
 .txt {
   display: flex;
-  /* Flexbox를 사용하여 내부 요소들을 행으로 정렬합니다. */
   margin-top: 10px;
-  /* 필요한 경우 위쪽 여백을 조정합니다. */
 }
 
 #content {
   box-sizing: border-box;
-  /* 테두리와 패딩을 포함한 너비로 설정합니다. */
 }
 
 #id {
@@ -38,3 +35,8 @@ form {
   padding: 5px 10px;
 }
 
+
+
+.write-body {
+  margin: 50px;
+}

@@ -119,9 +119,6 @@ const Home = () => {
             </div>
           </div>
         </article>
-        <article>
-          <div></div>
-        </article>
         {dtlist && <Maindiv content={dtlist} />}
       </div>
     </main>

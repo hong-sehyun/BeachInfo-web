@@ -3,9 +3,9 @@ import { LiaUmbrellaBeachSolid } from 'react-icons/lia'
 import AOS from "aos";
 import "aos/dist/aos.css";
 import './board.css'
+import { Link } from 'react-router-dom';
 
-
-const Footer = () => {
+const Board = () => {
 
   
   useEffect(() => {
@@ -38,11 +38,14 @@ const Footer = () => {
 
 
   const showBeaches = () => {
+
+    const sortedBeaches = beaches.sort((a, b) => a.localeCompare(b));
+
     return (
       <div>
       <select>
       <option value="" defaultValue>해수욕장</option>
-        {beaches.map((beachName) => (
+        {sortedBeaches.map((beachName) => (
           <option key={beachName.id} value={beachName.beach}>
             {beachName}
           </option>
@@ -71,7 +74,7 @@ const Footer = () => {
           {boards.map((board) => (
             <tr key={board.seq}>
               <td>{board.seq}</td>
-              <td>{board.id}</td>
+              <td>{board.username}</td>
               <td>{board.beach}</td>
               <td>{board.content}</td>
               <td>{board.createDate}</td>
@@ -105,10 +108,11 @@ const Footer = () => {
         <input type='text' id='content'></input>
         <button id='boardbt' type="submit">Submit</button>
       </div>
+      <Link to='/write'>글쓰기</Link>
     </article>
 
 
   )
 }
 
-export default Footer
+export default Board

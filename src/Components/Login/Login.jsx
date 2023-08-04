@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LiaUmbrellaBeachSolid } from 'react-icons/lia';
 import "./login.css";
 
@@ -25,10 +25,8 @@ const Login = (props) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(loginData),
-
         
       });
-
 
       console.log("Authorization :" + response.headers.get("Authorization"));
 
@@ -45,15 +43,16 @@ const Login = (props) => {
   
     } catch (error) {
       console.error('Error during login:', error);
+      alert('아이디 또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.');
     }
   };
   return (
-    <main className='loginBody'>
-      <h1>Beach Info
-        <LiaUmbrellaBeachSolid className="icon" />
-      </h1>
+    <main className='body'>
+      <Link to="/">
+      <h1>Beach Info <LiaUmbrellaBeachSolid className="icon" /></h1>
+      </Link>
       <form onSubmit={handleSubmit}>
-        <article>
+        <article className='article'>
           <div className='loginInput flex'>
             <label htmlFor="Username">
               아이디
@@ -76,6 +75,7 @@ const Login = (props) => {
             <button type="submit">
               로그인
             </button>
+            <p>계정이 없으신가요? Beach Info에 <Link to='/join'>가입</Link>하세요! </p>
           </div>
         </article>
       </form>

@@ -3,7 +3,8 @@ import './App.css'
 import Main from './Components/Main/Main'
 import Login from './Components/Login/Login'
 import MemberPage from './Components/Login/MemberPage'
-
+import Join from './Components/Login/Join'
+import Write from './Components/Board/Write'
 import { BrowserRouter, Routes, Route, Link, useNavigate } from 'react-router-dom'
 
 const App = () => {
@@ -16,7 +17,6 @@ const App = () => {
     setToken(token);
   };
 
-  // Function to handle logout and set isLoggedIn to false
   const handleLogout = () => {
     setIsLoggedIn(false);
     setToken('');
@@ -25,19 +25,19 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* The main page */}
         <Route path='/' element={<Main />} />
-
-        {/* The login page */}
         <Route
           path='/login'
-          element={<Login onLoginSuccess={handleLoginSuccess} />}
-        />
+          element={<Login onLoginSuccess={handleLoginSuccess} />} />
         <Route
           path='/member'
-          element={<MemberPage token={token} />}
-        />
-
+          element={<MemberPage token={token} />} />
+        <Route
+          path='/join'
+          element={<Join element={<Join />}  />} />
+      <Route
+          path='/write'
+          element={<Write token={token} />} />
       </Routes>
     </BrowserRouter>
   );
