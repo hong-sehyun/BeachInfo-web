@@ -3,10 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Write = ({ token }) => {
 
-    useEffect(() => {
-        console.log('Token:', token);
-    }, []);
-
     const isLoggedIn = !!token;
     const navigate = useNavigate();
 
@@ -19,7 +15,7 @@ const Write = ({ token }) => {
         fetch('http://localhost:8080/beaches')
             .then((resp) => resp.json())
             .then((data) => {
-                setBeaches(data.map((beachData) => beachData.beach)); // Extract only the 'beach' property
+                setBeaches(data.map((beachData) => beachData.beach)); 
             })
             .catch((error) => console.error(error));
     }, []);
@@ -106,6 +102,7 @@ const Write = ({ token }) => {
 
                 <button type="submit">제출</button>
                 <Link to="/">홈으로</Link>
+                
             </article>
             </form>
             

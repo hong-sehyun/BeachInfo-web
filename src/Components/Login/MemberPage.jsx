@@ -8,7 +8,8 @@ const MemberPage = ({token}) => {
     <>
         <h2>로그인에 성공하였습니다</h2>
       <div>{sub}님 반갑습니다</div>
-      <Link to="/">홈으로</Link>
+      <p><Link to="/">홈으로</Link></p>
+      <p><Link to="/write">글쓰기</Link></p>
     </>
 
   )
