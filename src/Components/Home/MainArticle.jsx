@@ -16,6 +16,7 @@ const MainArticle = ({ item }) => {
 
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
   const {kakao} = window
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -78,21 +79,21 @@ const MainArticle = ({ item }) => {
 
   return (
     <main>
-    <article data-aos="fade-up">
-      <header>
-        <hgroup>
-          <h2>{item.beach} 해수욕장</h2>
-          <h3><HiOutlineLocationMarker className='locicon'/> {item.address}</h3>
-        </hgroup>
-      </header>
-      <div className='cardBody flex'>
-        <span>
-          <p>개장일 : {item.open}</p>
-          <p>폐장일 : {item.close}</p>
-        </span>
-        <a onClick={handleModalOpen}><BsMap /> 지도 보기 </a>
-      </div>
-        
+      <article data-aos="fade-up">
+        <header>
+          <hgroup>
+            <h2>{item.beach} 해수욕장</h2>
+            <h3><HiOutlineLocationMarker className='locicon' /> {item.address}</h3>
+          </hgroup>
+        </header>
+        <div className='cardBody flex'>
+          <span>
+            <p>개장일 : {item.open}</p>
+            <p>폐장일 : {item.close}</p>
+          </span>
+          <a onClick={handleModalOpen}><BsMap /> 지도 보기 </a>
+        </div>
+
       </article>
       <div>
          

@@ -1,7 +1,10 @@
 article {
   background-color: rgba(255, 255, 255, 0.8);
   position: relative;
-  /* article을 상대적 위치로 설정합니다. */
+}
+
+.boardArticle{
+  margin: 40px;
 }
 
 form {

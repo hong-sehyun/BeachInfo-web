@@ -10,6 +10,7 @@ const MemberPage = ({token}) => {
       <div>{sub}님 반갑습니다</div>
       <p><Link to="/">홈으로</Link></p>
       <p><Link to="/write">글쓰기</Link></p>
+      <p><Link to="/board">게시판</Link></p>
     </>
 
   )
