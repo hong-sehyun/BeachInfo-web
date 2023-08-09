@@ -7,9 +7,29 @@ import { Link } from 'react-router-dom';
 import { useCookies } from "react-cookie";
 
 const Board = ({ token }) => {
-  const payload = JSON.parse(atob(token.split('.')[1]));
-  console.log('Decoded Payload:', payload);
-  const sub = payload.sub;
+  // const payload = JSON.parse(atob(token.split('.')[1]));
+  // console.log('Decoded Payload:', payload);
+  // const sub = payload.sub;
+  let sub = '';
+  let role = '';
+  if (token) {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    sub = payload.sub;
+    role = payload.role;
+  }
+
+  console.log('Token:', token);
+console.log('Role:', role);
+
+  // 글쓰기 버튼 클릭시 경고창
+  const writeClick = () => {
+    if (token) {
+      window.location.href = "/write";
+    } else {
+      alert("로그인을 해주세요");
+    }
+  };
+
 
 
   const [cookies] = useCookies(['Token']);
@@ -39,7 +59,26 @@ const Board = ({ token }) => {
       .catch((error) => console.error(error));
   }, []);
 
+  const handleDeleteAll = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/Boards', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token,
+        },
+      });
 
+      if (response.ok) {
+        console.log('Delete All Successful');
+        setBoards([]);  // Empty the boards list
+      } else {
+        console.error('Delete All Failed');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const showBoards = () => {
 
@@ -52,7 +91,7 @@ const Board = ({ token }) => {
             <th>Beach</th>
             <th>Content</th>
             <th>Create Date</th>
-            <th>수정 / 삭제</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -70,8 +109,8 @@ const Board = ({ token }) => {
               <td>{board.createDate}</td>
               <td>
                 <div className='grid'>
-                  <a href='#'>수정</a>
-                  {board.username === sub && (
+                  {/* {token && <a href='#'>수정</a>} */}
+                  {token && board.username === sub && (
                     <a onClick={() => handleDelete(board.seq)}>삭제</a>
                   )}
                 </div>
@@ -118,22 +157,38 @@ const Board = ({ token }) => {
 
   return (
 
+    // <article data-aos="fade-up" className='boardArticle'>
+    //   <h2>{sub}님</h2>
+    //   {token ? (
+    //     <form>
+    //       {showBoards()}
+    //     </form>
+    //   ) : (
+    //     <p>Please log in to view the board.</p>
+    //   )}
+    //   <div id='more'>
+    //     <a href='#'>more ▷ </a>
+    //   </div>
+    //   <Link to='/write'>글쓰기</Link>
+    // </article>
+
     <article data-aos="fade-up" className='boardArticle'>
-      <h2>{sub}님</h2>
-      {token ? (
-        <form>
-          {showBoards()}
-        </form>
-      ) : (
-        <p>Please log in to view the board.</p>
+      <h2>{token ? `${sub}님` : '게스트'}</h2>
+      {showBoards()}
+      {token && (
+        <div>
+          <div id='more'>
+            <a href='#'>more ▷ </a>
+          </div>
+
+        </div>
       )}
-      <div id='more'>
-        <a href='#'>more ▷ </a>
-      </div>
-      <Link to='/write'>글쓰기</Link>
+
+      {role === "ROLE_ADMIN" && (
+        <button onClick={handleDeleteAll}>Delete All Posts</button>
+      )}
+      <a onClick={writeClick} className="writeLink">글쓰기</a>
     </article>
-
-
   )
 }
 

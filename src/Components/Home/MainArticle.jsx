@@ -1,29 +1,35 @@
 import { useState, useEffect, useRef, React } from 'react'
 import Maindiv from './Maindiv';
 import Home from './Home';
-import {AiOutlineClose} from 'react-icons/ai'
-import {HiOutlineLocationMarker} from 'react-icons/hi'
-import {BsMap} from 'react-icons/bs'
+import { AiOutlineClose } from 'react-icons/ai'
+import { HiOutlineLocationMarker } from 'react-icons/hi'
+import { BsMap } from 'react-icons/bs'
 import './home.css'
 import AOS from "aos";
 import "aos/dist/aos.css";
+import 'animate.css';
 
 const MainArticle = ({ item }) => {
 
   useEffect(() => {
-    AOS.init({duration: 800})
+    AOS.init({ duration: 800 })
   }, [])
 
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  const {kakao} = window
+  const [modalAnimationClass, setModalAnimationClass] = useState('');
+
+  const { kakao } = window
   const handleModalOpen = () => {
+    setModalAnimationClass('animate__fadeIn');
     setIsModalOpen(true);
   };
 
   const handleModalClose = () => {
-    setIsModalOpen(false);
+    setModalAnimationClass('animate__fadeOut');
+    setTimeout(() => {
+      setIsModalOpen(false);
+    }, 100); 
   };
 
   useEffect(() => {
@@ -96,25 +102,22 @@ const MainArticle = ({ item }) => {
 
       </article>
       <div>
-         
 
-          {isModalOpen && (
-            <dialog id="modalContainer">
-              
-              <article id="modalContent">
-                <div id='spbt'>
-                <AiOutlineClose onClick={handleModalClose} id='closebt'/>
 
-                </div>
-                <h2>{item.beach} 해수욕장</h2>
-                <p>{item.address}</p>
-                <div id="kakaoMap" className="kakaoMap" style={{ width: '500px', height: '400px' }}></div>
-                
-              </article>
-            </dialog>
-          )}
-        </div>
-        </main>
+        {isModalOpen && (
+          <dialog id="modalContainer"  className={`animate__animated ${modalAnimationClass}`}>
+            <article id="modalContent">
+              <div id='spbt'>
+                <AiOutlineClose onClick={handleModalClose} id='closebt' />
+              </div>
+              <h2>{item.beach} 해수욕장</h2>
+              <p>{item.address}</p>
+              <div id="kakaoMap" className="kakaoMap" style={{ width: '500px', height: '400px' }}></div>
+            </article>
+          </dialog>
+        )}
+      </div>
+    </main>
   );
 };
 

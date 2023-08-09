@@ -80,7 +80,7 @@ const Login = (props) => {
       if (token) {
         setCookie('Token', token, { path: '/' });
         props.onLoginSuccess(token);
-        navigate('/member');
+        navigate('/');
       } else {
         throw new Error('Token not found in response');
       }

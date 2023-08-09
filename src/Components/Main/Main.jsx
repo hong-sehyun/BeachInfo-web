@@ -12,7 +12,7 @@ const Main = ({ token }) => {
     <main className='appmain'>
     <Navbar />
     <Home />
-     {cookies.Token && <Board token={cookies.Token} />} 
+    <Board token={cookies.Token} />
     </main>
   )
 }
