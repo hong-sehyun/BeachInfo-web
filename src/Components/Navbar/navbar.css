@@ -1,22 +1,77 @@
 .title li {
-    font-size: 70px; 
-    font-weight: bold;
+  font-size: 70px;
+  font-weight: bold;
 }
 
 .icon {
-    font-size: 70px; 
+  font-size: 70px;
 }
 
-#UserIcon {
-    font-size: 35px;
-    color: rgba(65, 84, 98); 
+.UserIcon {
+  font-size: 30px;
+  color: rgba(65, 84, 98);
 }
 
-nav {
+/* nav {
     margin: 40px;
     margin-top: 60px;
-}
+} */
 
 /* #mydiv {
     display: none;
 } */
+
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px;
+  width: 100%;
+
+  height: 75vh;
+}
+
+
+/* .title {
+    margin-right: auto; 
+  }
+  
+  ul {
+    display: flex; 
+    align-items: center;
+    gap: 1rem; 
+  }
+  
+  ul, li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }  */
+
+.sp {
+  color: rgba(65, 84, 98);
+  font-weight: 700;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  /* align-items: flex-end;  */
+  width: 100%;
+  /* height: 100vh; */
+}
+
+.user {
+  /* This will move the user div to the top left of the main-container */
+  align-self: flex-end;
+  padding: 10px;
+  /* Some vertical space around the user info, adjust as needed */
+  margin-top: 10px;
+  margin-right: 30px;
+}

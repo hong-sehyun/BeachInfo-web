@@ -1,3 +1,38 @@
-.appmain {
+/* .appmain {
     margin: 40px;
+  } */
+  .scroll-container{
+    scroll-behavior: smooth;
+    display: block;
   }
+  #section1 {
+    display: flex;
+    justify-content: center; /* center horizontally */
+    align-items: center;     /* center vertically */
+    flex-direction: column;  /* stack children vertically */
+    height: 100vh;           
+    
+  }
+  #scrolldown {
+    color: rgba(65, 84, 98);
+    display: inline-block;
+    transform: scale(3.5);
+    transition: transform 0.3s ease;
+  }
+
+  #scrolldown:hover {
+    transform: scale(4.8);
+  
+  }
+  .scroll-container {
+    scroll-behavior: smooth;
+  }
+
+#section2 {
+  margin-left: 20px;
+  
+}
+
+#section3 {
+  margin-left: 20px;
+}

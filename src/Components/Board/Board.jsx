@@ -19,7 +19,7 @@ const Board = ({ token }) => {
   }
 
   console.log('Token:', token);
-console.log('Role:', role);
+  console.log('Role:', role);
 
   // 글쓰기 버튼 클릭시 경고창
   const writeClick = () => {
@@ -59,71 +59,6 @@ console.log('Role:', role);
       .catch((error) => console.error(error));
   }, []);
 
-  const handleDeleteAll = async () => {
-    try {
-      const response = await fetch('http://localhost:8080/Boards', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: token,
-        },
-      });
-
-      if (response.ok) {
-        console.log('Delete All Successful');
-        setBoards([]);  // Empty the boards list
-      } else {
-        console.error('Delete All Failed');
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const showBoards = () => {
-
-    return (
-      <table>
-        <thead>
-          <tr>
-            <th>Seq</th>
-            <th>ID</th>
-            <th>Beach</th>
-            <th>Content</th>
-            <th>Create Date</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {boards.map((board) =>
-          // console.log('CurrentUser:', currentUser);
-          // console.log('Board Username:', board.username);
-          // console.log("Token from cookies:", cookies.Token);
-          // console.log("Received token prop:", token);
-          (
-            <tr key={board.seq}>
-              <td>{board.seq}</td>
-              <td>{board.username}</td>
-              <td>{board.beach}</td>
-              <td>{board.content}</td>
-              <td>{board.createDate}</td>
-              <td>
-                <div className='grid'>
-                  {/* {token && <a href='#'>수정</a>} */}
-                  {token && board.username === sub && (
-                    <a onClick={() => handleDelete(board.seq)}>삭제</a>
-                  )}
-                </div>
-              </td>
-            </tr>
-          )
-
-          )}
-        </tbody>
-      </table>
-    );
-  };
-
   const handleDelete = async (seq) => {
     try {
       const response = await fetch(`http://localhost:8080/Boards/${seq}`, {
@@ -147,6 +82,95 @@ console.log('Role:', role);
       console.error(error);
     }
   };
+
+  const handleDeleteAll = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/Boards', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token,
+        },
+      });
+
+      if (response.ok) {
+        console.log('Delete All Successful');
+        setBoards([]);  
+      } else {
+        console.error('Delete All Failed');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const showBoards = () => {
+
+    return (
+      <table>
+        <thead>
+          <tr>
+            <th>Seq</th>
+            <th>ID</th>
+            <th>Beach</th>
+            <th>title</th>
+            <th>Create Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {boards.map((board) =>
+          // console.log('CurrentUser:', currentUser);
+          // console.log('Board Username:', board.username);
+          // console.log("Token from cookies:", cookies.Token);
+          // console.log("Received token prop:", token);
+          (
+            <tr key={board.seq}>
+              <td>{board.seq}</td>
+              <td>{board.username}</td>
+              <td>{board.beach}</td>
+              <td><Link to={`/boards/${board.seq}`}>{board.title}</Link></td>
+              <td>{board.createDate}</td>
+              <td>
+                <div className='grid'>
+
+                  {token && board.username === sub && (
+                    <a onClick={() => handleDelete(board.seq)}>삭제</a>
+                  )}
+                </div>
+              </td>
+            </tr>
+          )
+
+          )}
+        </tbody>
+      </table>
+    );
+  };
+
+  // const handleDelete = async (seq) => {
+  //   try {
+  //     const response = await fetch(`http://localhost:8080/Boards/${seq}`, {
+  //       method: 'DELETE',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         Authorization: token, // Add the token here
+  //       },
+  //     });
+
+  //     if (response.ok) {
+  //       console.log('Delete Successful');
+  //       // Update the board list after deletion
+  //       setBoards(boards.filter((board) => board.seq !== seq));
+  //       // // Refresh the board list after deletion
+  //       // fetchBoards();
+  //     } else {
+  //       console.error('Delete Failed');
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   // const fetchBoards = () => {
   //   fetch('http://localhost:8080/Boards')
@@ -172,17 +196,10 @@ console.log('Role:', role);
     //   <Link to='/write'>글쓰기</Link>
     // </article>
 
-    <article data-aos="fade-up" className='boardArticle'>
+    <article data-aos="fade-up" >
       <h2>{token ? `${sub}님` : '게스트'}</h2>
       {showBoards()}
-      {token && (
-        <div>
-          <div id='more'>
-            <a href='#'>more ▷ </a>
-          </div>
 
-        </div>
-      )}
 
       {role === "ROLE_ADMIN" && (
         <button onClick={handleDeleteAll}>Delete All Posts</button>

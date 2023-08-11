@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import './App.css'
 import Main from './Components/Main/Main'
+import Home from './Components/Home/Home'
 import Login from './Components/Login/Login'
 import MemberPage from './Components/Login/MemberPage'
 import Join from './Components/Login/Join'
 import Write from './Components/Board/Write'
 import Board from './Components/Board/Board'
+import BoardDetail from './Components/Board/BoardDetail'
 import { BrowserRouter, Routes, Route, Link, useNavigate } from 'react-router-dom'
 import { useCookies } from "react-cookie";
 
@@ -38,6 +40,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Main />} />
+        <Route path='/home' element={<Home />} />
         <Route
           path='/login'
           element={<Login onLoginSuccess={handleLoginSuccess} />} />
@@ -53,7 +56,8 @@ const App = () => {
         <Route
           path='/write'
           element={<Write token={cookies.Token} />} />
-      </Routes>
+        <Route path="/boards/:seq" element={<BoardDetail token={cookies.Token}/>} />
+        <Route path="/edit/:seq" element={<Write mode="edit" token={cookies.Token} />} />      </Routes>
     </BrowserRouter>
   );
 }

@@ -85,7 +85,7 @@ const MainArticle = ({ item }) => {
 
   return (
     <main>
-      <article data-aos="fade-up">
+      <article data-aos="fade-up" className='cardArticle'>
         <header>
           <hgroup>
             <h2>{item.beach} 해수욕장</h2>

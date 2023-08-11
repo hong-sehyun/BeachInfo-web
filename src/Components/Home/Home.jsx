@@ -17,7 +17,7 @@ const Home = () => {
 
 
   useEffect(() => {
-    AOS.init({duration: 800})
+    AOS.init({duration: 1000})
   }, [])
   
   const [dtlist, setDtlist] = useState([]);
@@ -72,7 +72,7 @@ const Home = () => {
 
 
   return (
-    <main>
+    <main className='homeMain'>
 
       <div className="container">
 
@@ -88,7 +88,7 @@ const Home = () => {
           </h1>
         </div>
 
-        <article data-aos="fade-up" className="grid">
+        <article data-aos="fade-up" className="mainInput grid">
           <div className='grid'>
             <div className="destinationInput">
               <label htmlFor="city">Search your destination:</label>
