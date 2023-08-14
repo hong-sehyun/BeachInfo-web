@@ -5,13 +5,13 @@
 
 }
 
-.home {
-  width: 100%;
-  position: relative;
+.homeMain {
+  /* width: 100%; */
+  /* position: relative; */
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 50px;
+  margin: 20px;
 }
 
 .overlay {
@@ -73,8 +73,9 @@ video {
 }
 
 
-article {
+.cardArticle {
   background-color: rgba(255, 255, 255, 0.8);
+  margin: 15px;
 }
 
 .container {
@@ -174,10 +175,7 @@ hgroup h2 {
   margin-bottom: 20px;
 }
 
-.homeMain {
-  margin: 50px;
-  padding: 50px;
-}
+
 
 
 .cardBody {

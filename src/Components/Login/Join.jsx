@@ -13,12 +13,21 @@ const Join = () => {
 
     useEffect(() => {
 
-        setPasswordMatch(password === confirmPassword);
+        if (!password.trim() && !confirmPassword.trim()) {
+            setPasswordMatch(null); 
+        } else {
+            setPasswordMatch(password === confirmPassword);
+        }
     }, [password, confirmPassword]);
 
 
     const handleRegister = async (e) => {
         e.preventDefault();
+
+        if (!username.trim() || !password.trim()) {
+            alert('아이디와 비밀번호는 반드시 입력되어야 합니다.');
+            return;
+        }
 
         if (!passwordMatch) {
             alert('비밀번호가 일치하지 않습니다. 다시 확인해주세요.');
@@ -88,8 +97,9 @@ const Join = () => {
                             className={passwordMatch ? 'match' : 'not-match'}
                         />
                     </div>
-                    {!passwordMatch && <p className="error">비밀번호가 일치하지 않습니다. 다시 확인해주세요.</p>}
-                    {passwordMatch && <p>비밀번호가 일치합니다. 회원가입을 해주세요.</p>}
+                    {passwordMatch === null && <p>비밀번호를 입력해주세요.</p>}
+                    {passwordMatch === false && <p className="error">비밀번호가 일치하지 않습니다. 다시 확인해주세요.</p>}
+                    {passwordMatch === true && <p>비밀번호가 일치합니다. 회원가입을 해주세요.</p>}
                     <div></div>
                     <div>
                         <button type="submit">회원가입</button>

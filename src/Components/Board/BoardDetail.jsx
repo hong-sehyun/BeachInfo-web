@@ -34,6 +34,12 @@ const BoardDetail = ({ token }) => {
 
 
     const handleDelete = async (seq) => {
+        const userConfirmed = window.confirm('정말로 삭제하시겠습니까?');
+
+        if (!userConfirmed) {
+            return; 
+        }
+        
         try {
             const response = await fetch(`http://localhost:8080/Boards/${seq}`, {
                 method: 'DELETE',
@@ -62,38 +68,38 @@ const BoardDetail = ({ token }) => {
     return (
         <main className='detailMain'>
             <Link to="/">
-            <h1 className='detailh1'>Beach Info <LiaUmbrellaBeachSolid className="detailicon" /></h1>
+                <h1 className='detailh1'>Beach Info <LiaUmbrellaBeachSolid className="detailicon" /></h1>
             </Link>
 
-        <article>
-            <header>
-            <hgroup>
-                <h2>{board.title}</h2>
-                <h3>아이디 : {board.username}</h3>
+            <article>
+                <header>
+                    <hgroup>
+                        <h2>{board.title}</h2>
+                        <h3>아이디 : {board.username}</h3>
 
-            </hgroup>
+                    </hgroup>
 
-            </header>
+                </header>
 
 
 
-            <p>{board.content}</p>
+                <p>{board.content}</p>
 
-            <img src={`http://localhost:8080/Boards/${seq}/image`} alt="Image" />
+                {board.imagePath && <img src={`http://localhost:8080/Boards/${seq}/image`} alt="Image" />}
 
-            <footer>
+                <footer>
 
-            <div className='grid'>
-                {token && board.username === sub && (
-                    <>
-                        <a onClick={handleUpdate}>수정</a>
-                        <a onClick={() => handleDelete(board.seq)}>삭제</a>
-                    </>
-                )}
-            </div>
+                    <div className='abtdiv grid'>
+                        {token && board.username === sub && (
+                            <div className='grid'>
+                                <a onClick={handleUpdate}>수정</a>
+                                <a onClick={() => handleDelete(board.seq)}>삭제</a>
+                            </div>
+                        )}
+                    </div>
 
-            </footer>
-        </article>
+                </footer>
+            </article>
         </main>
     );
 }

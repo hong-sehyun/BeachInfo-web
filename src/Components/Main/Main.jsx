@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import Board from '../Board/Board'
 import Home from '../Home/Home'
 import Navbar from '../Navbar/Navbar'
+import Footer from '../Footer/Footer'
+
 import { useCookies } from "react-cookie";
 import { HiOutlineChevronDown } from 'react-icons/hi'
 import AOS from "aos";
@@ -29,6 +31,7 @@ const Main = ({ token }) => {
 
         <Board token={cookies.Token} />
       </div>
+      <Footer/>
     </main>
   )
 }

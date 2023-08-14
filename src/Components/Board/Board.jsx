@@ -60,20 +60,23 @@ const Board = ({ token }) => {
   }, []);
 
   const handleDelete = async (seq) => {
+    const userConfirmed = window.confirm('정말로 삭제하시겠습니까?');
+
+    if (!userConfirmed) {
+        return; 
+    }
     try {
       const response = await fetch(`http://localhost:8080/Boards/${seq}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: token, // Add the token here
+          Authorization: token, 
         },
       });
 
       if (response.ok) {
         console.log('Delete Successful');
-        // Update the board list after deletion
         setBoards(boards.filter((board) => board.seq !== seq));
-        // // Refresh the board list after deletion
         // fetchBoards();
       } else {
         console.error('Delete Failed');
@@ -110,12 +113,12 @@ const Board = ({ token }) => {
       <table>
         <thead>
           <tr>
-            <th>Seq</th>
-            <th>ID</th>
-            <th>Beach</th>
-            <th>title</th>
-            <th>Create Date</th>
-            <th></th>
+            <th scope="col">Seq</th>
+            <th scope="col">ID</th>
+            <th scope="col">Beach</th>
+            <th scope="col">title</th>
+            <th scope="col">Create Date</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -126,7 +129,9 @@ const Board = ({ token }) => {
           // console.log("Received token prop:", token);
           (
             <tr key={board.seq}>
-              <td>{board.seq}</td>
+              
+              <th scope="row">{board.seq}</th>
+              
               <td>{board.username}</td>
               <td>{board.beach}</td>
               <td><Link to={`/boards/${board.seq}`}>{board.title}</Link></td>
@@ -196,7 +201,7 @@ const Board = ({ token }) => {
     //   <Link to='/write'>글쓰기</Link>
     // </article>
 
-    <article data-aos="fade-up" >
+    <article className='articleTable' data-aos="fade-up" >
       <h2>{token ? `${sub}님` : '게스트'}</h2>
       {showBoards()}
 

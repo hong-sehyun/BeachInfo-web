@@ -48,3 +48,30 @@ article {
 .detailicon {
   font-size: 50px;
 }
+
+
+
+.abtdiv .grid {
+  display: flex;
+  justify-content: flex-end; 
+}
+
+.abtdiv .grid a {
+  margin-left: 10px; 
+  font-weight: 700;
+}
+
+/* .boardDiv {
+  background-color: aliceblue;
+  margin: 30px;
+} */
+
+
+.articleTable {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+table {
+  width: 100%; 
+}

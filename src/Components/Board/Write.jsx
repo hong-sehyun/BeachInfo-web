@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useParams  } from 'react-router-dom';
+import { LiaUmbrellaBeachSolid } from 'react-icons/lia'
+
 // import { useCookies } from 'react-cookie';
 
 const Write = ({ token, mode = "write"}) => {
@@ -191,6 +193,9 @@ const Write = ({ token, mode = "write"}) => {
 
     return (
         <main className='write-body'>
+            <Link to="/">
+                <h1 className='detailh1'>Beach Info <LiaUmbrellaBeachSolid className="detailicon" /></h1>
+            </Link>
             <form onSubmit={handleSubmit}>
                 <article >
                     <hgroup>
@@ -222,7 +227,7 @@ const Write = ({ token, mode = "write"}) => {
                     </label>
 
                     <button type="submit">제출</button>
-                    <Link to="/">홈으로</Link>
+    
 
                 </article>
             </form>
